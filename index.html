@@ -7,15 +7,17 @@
 <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Final_Trophee_Monal_2012_n08.jpg">
 <img src="https://steamcdn-a.akamaihd.net/steam/apps/10/header.jpg?t=1528733245">
 <script>
-function DisplayVisits()
-{
-// How many visits so far?
-    var numVisits = GetCookie("numVisits");
-    if (numVisits) numVisits = parseInt(numVisits) + 1;
-    else numVisits = 1; // the value for the new cookie
+incrementAndShowValue();
 
-// Show the number of visits
-    if (numVisits==1) document.write("This is your first visit.");
-    else document.write("You have visited this page " + numVisits + " times.");
+function incrementAndShowValue() {
+  var value = getCookie("visitcounter") || 0;
+  var newValue = ("00000" + (Number(value) + 1)).slice(-6);
+  var container = document.getElementById("counterVisitor");
+  String(newValue).split("").forEach(function(item, index) {
+    container.children[index].innerHTML = item;
+  });
+  counter++;
+  setCookie("visitcounter", counter);
+}
 </script>
 </html>
